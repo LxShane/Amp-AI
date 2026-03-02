@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Automation & Modernization for Singapore Businesses. Don't get left behind in the AI era. $499 AI Readiness Audit.">
+    <meta name="description" content="AI Automation & Modernization for Singapore Businesses. Stop drowning in manual work. $499 AI Readiness Audit.">
     <meta name="keywords" content="AI automation, business automation, Singapore, digital transformation, AI audit, workflow automation">
     <meta name="author" content="Amp AI">
     
@@ -12,10 +12,13 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Inter & Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <script>
         tailwind.config = {
@@ -23,20 +26,25 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            900: '#1e3a8a',
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
                         },
-                        accent: {
-                            500: '#f59e0b',
-                            600: '#d97706',
+                        dark: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
                         }
                     }
                 }
@@ -46,280 +54,413 @@
     
     <style>
         html { scroll-behavior: smooth; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(14, 165, 233, 0.6); }
+        }
+        
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
-        .gradient-text { background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .animate-slide-up { animation: slide-up 0.8s ease-out forwards; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #22d3ee 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .dark-glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+            padding: 3px;
+            border-radius: 16px;
+        }
+        
+        .gradient-border-inner {
+            background: white;
+            border-radius: 14px;
+            height: 100%;
+        }
+        
+        .noise-bg {
+            position: relative;
+        }
+        
+        .noise-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
     </style>
 </head>
-<body class="font-sans text-gray-900 antialiased bg-white">
+<body class="font-sans text-gray-900 antialiased bg-white overflow-x-hidden">
 
-    <!-- Header -->
-    <header class="fixed w-full top-0 z-50 bg-white border-b border-gray-200">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-50 via-white to-purple-50"></div>
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
+        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Modern Header -->
+    <header class="fixed w-full top-0 z-50 glass-card">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <span class="text-2xl font-bold text-brand-700">Amp AI</span>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-xl font-display font-bold bg-gradient-to-r from-brand-600 to-purple-600 bg-clip-text text-transparent">Amp AI</span>
                 </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#problems" class="text-gray-600 hover:text-brand-600 font-medium">Pain Points</a>
-                    <a href="#solutions" class="text-gray-600 hover:text-brand-600 font-medium">Solutions</a>
-                    <a href="#services" class="text-gray-600 hover:text-brand-600 font-medium">Services</a>
-                    <a href="#pricing" class="text-gray-600 hover:text-brand-600 font-medium">Pricing</a>
+                <nav class="hidden md:flex space-x-1">
+                    <a href="#problems" class="px-4 py-2 text-gray-600 hover:text-brand-600 font-medium rounded-lg hover:bg-brand-50 transition">Problems</a>
+                    <a href="#solutions" class="px-4 py-2 text-gray-600 hover:text-brand-600 font-medium rounded-lg hover:bg-brand-50 transition">Solutions</a>
+                    <a href="#services" class="px-4 py-2 text-gray-600 hover:text-brand-600 font-medium rounded-lg hover:bg-brand-50 transition">Services</a>
+                    <a href="#pricing" class="px-4 py-2 text-gray-600 hover:text-brand-600 font-medium rounded-lg hover:bg-brand-50 transition">Pricing</a>
                 </nav>
-                <a href="#book" class="bg-brand-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-brand-700 transition">Get AI Audit</a>
+                <a href="#book" class="bg-gradient-to-r from-brand-600 to-brand-500 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:shadow-brand-500/30 transition animate-pulse-glow">
+                    Get AI Audit
+                </a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 bg-gradient-to-br from-brand-50 via-white to-brand-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-4xl mx-auto">
-                <div class="inline-block bg-brand-100 text-brand-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                    🚀 AI Automation for Singapore Businesses
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-4xl mx-auto animate-slide-up">
+                <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur border border-brand-200 text-brand-700 px-4 py-2 rounded-full text-sm font-semibold mb-8 shadow-sm">
+                    <span class="flex h-2 w-2 rounded-full bg-brand-500 animate-pulse"></span>
+                    🚀 Now serving Singapore businesses
                 </div>
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                    Stop Drowning in <span class="gradient-text">Manual Work</span>
+                
+                <h1 class="text-5xl md:text-7xl font-display font-bold mb-8 leading-tight">
+                    Stop Drowning in <br/>
+                    <span class="gradient-text">Manual Work</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                
+                <p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
                     We help Singapore businesses automate repetitive tasks, capture more leads, and free up your team to focus on what actually matters.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#book" class="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-brand-700 transition shadow-lg hover:shadow-xl">
-                        Start AI Readiness Audit — S$499
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                    <a href="#book" class="group relative bg-gradient-to-r from-brand-600 to-brand-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-brand-500/40 transition-all duration-300 overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            Start AI Readiness Audit
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition"></i>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-brand-500 to-brand-400 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
                     </a>
-                    <p class="text-gray-500 text-sm">✓ 1-hour consultation ✓ Custom roadmap ✓ 3 quick wins ✓ No obligation</p>
+                    <div class="flex items-center gap-2 text-gray-500">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-green-500"></i>
+                        <span class="text-sm">S$499 • No obligation</span>
+                    </div>
+                </div>
+                
+                <!-- Trust Badges -->
+                <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-brand-500"></i>
+                        1-hour consultation
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-brand-500"></i>
+                        Custom roadmap
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-brand-500"></i>
+                        3 quick wins
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats -->
-    <section class="py-10 bg-gray-900 text-white">
+    <!-- Modern Stats Bar -->
+    <section class="py-12 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-4xl font-bold text-brand-400">10+ hrs</div>
-                    <div class="text-gray-400 mt-2">wasted weekly on admin</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold text-brand-400">60%</div>
-                    <div class="text-gray-400 mt-2">of leads go cold</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold text-brand-400">40%</div>
-                    <div class="text-gray-400 mt-2">faster with AI</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold text-brand-400">24/7</div>
-                    <div class="text-gray-400 mt-2">automation never sleeps</div>
+            <div class="dark-glass rounded-3xl p-8 md:p-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="group">
+                        <div class="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-300 mb-2 group-hover:scale-110 transition">10+</div>
+                        <div class="text-gray-400 text-sm">hours wasted weekly</div>
+                    </div>
+                    <div class="group">
+                        <div class="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-300 mb-2 group-hover:scale-110 transition">60%</div>
+                        <div class="text-gray-400 text-sm">of leads go cold</div>
+                    </div>
+                    <div class="group">
+                        <div class="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-300 mb-2 group-hover:scale-110 transition">40%</div>
+                        <div class="text-gray-400 text-sm">faster with AI</div>
+                    </div>
+                    <div class="group">
+                        <div class="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300 mb-2 group-hover:scale-110 transition">24/7</div>
+                        <div class="text-gray-400 text-sm">automation works</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pain Points - All Businesses -->
-    <section id="problems" class="py-20">
+    <!-- Pain Points - Modern Grid -->
+    <section id="problems" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">The Hidden Costs Killing Your Business</h2>
+                <span class="inline-block text-brand-600 font-semibold text-sm tracking-wider uppercase mb-4">The Problems</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">The Hidden Costs Killing Your Business</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     These pain points are costing you money every single day. How many sound familiar?
                 </p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Lead Generation & Sales -->
-                <div class="bg-red-50 p-6 rounded-2xl border-l-4 border-red-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">📞</div>
+                <!-- Pain Point Cards -->
+                <div class="glass-card p-6 rounded-2xl hover-lift group">
+                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i data-lucide="phone-missed" class="w-6 h-6 text-red-600"></i>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">Missed Calls = Missed Revenue</h3>
-                    <p class="text-gray-600 text-sm">Every call that goes to voicemail is a potential customer choosing your competitor. After-hours? Weekend inquiries? Gone.</p>
+                    <p class="text-gray-600 text-sm">Every call that goes to voicemail is a potential customer choosing your competitor.</p>
                 </div>
                 
-                <div class="bg-red-50 p-6 rounded-2xl border-l-4 border-red-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">😴</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift group">
+                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i data-lucide="timer" class="w-6 h-6 text-orange-600"></i>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">Slow Lead Response</h3>
-                    <p class="text-gray-600 text-sm">78% of customers hire the first business that responds. Taking hours (or days) to reply means you're losing to faster competitors.</p>
+                    <p class="text-gray-600 text-sm">78% of customers hire the first business that responds. Hours = lost deals.</p>
                 </div>
                 
-                <div class="bg-red-50 p-6 rounded-2xl border-l-4 border-red-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">📉</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift group">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i data-lucide="filter" class="w-6 h-6 text-yellow-600"></i>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">No Lead Qualification</h3>
-                    <p class="text-gray-600 text-sm">Your team wastes hours on unqualified prospects—price shoppers, wrong fit, not ready to buy. No system to filter them out.</p>
+                    <p class="text-gray-600 text-sm">Wasting hours on unqualified prospects—price shoppers, wrong fit, not ready.</p>
                 </div>
                 
-                <!-- Operations & Admin -->
-                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">📋</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift group">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i data-lucide="keyboard" class="w-6 h-6 text-blue-600"></i>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">Endless Data Entry</h3>
-                    <p class="text-gray-600 text-sm">Typing the same info into 3 different systems. Copy-pasting between apps. Your skilled staff doing robot work.</p>
+                    <p class="text-gray-600 text-sm">Typing the same info into 3 systems. Skilled staff doing robot work.</p>
                 </div>
                 
-                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">📧</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift group">
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i data-lucide="mail" class="w-6 h-6 text-purple-600"></i>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">Email Overload</h3>
-                    <p class="text-gray-600 text-sm">200+ emails daily. FAQ questions, status updates, appointment requests. Your inbox owns you, not the other way around.</p>
+                    <p class="text-gray-600 text-sm">200+ emails daily. FAQs, updates, requests. Your inbox owns you.</p>
                 </div>
                 
-                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">📅</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift group">
+                    <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i data-lucide="calendar-clock" class="w-6 h-6 text-pink-600"></i>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">Scheduling Chaos</h3>
-                    <p class="text-gray-600 text-sm">4-5 back-and-forth emails just to book a meeting. Double bookings, no-shows, calendar conflicts. Time you'll never get back.</p>
+                    <p class="text-gray-600 text-sm">4-5 back-and-forth emails per booking. Double bookings, no-shows.</p>
                 </div>
                 
-                <!-- Customer Service -->
-                <div class="bg-yellow-50 p-6 rounded-2xl border-l-4 border-yellow-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">💬</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift group">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-green-600"></i>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">Slow WhatsApp Replies</h3>
-                    <p class="text-gray-600 text-sm">Customers expect instant responses. Taking 2+ hours to reply on WhatsApp? They're already talking to your competitor.</p>
+                    <p class="text-gray-600 text-sm">Customers expect instant responses. 2+ hours = talking to competitors.</p>
                 </div>
                 
-                <div class="bg-yellow-50 p-6 rounded-2xl border-l-4 border-yellow-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">🔄</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift group">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i data-lucide="repeat" class="w-6 h-6 text-indigo-600"></i>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">Repeating Yourself</h3>
-                    <p class="text-gray-600 text-sm">Answering the same questions 20 times a day. "What's your price?" "What are your hours?" "Do you deliver to...?"</p>
+                    <p class="text-gray-600 text-sm">Answering the same questions 20x daily. "What's your price?" "Hours?"</p>
                 </div>
                 
-                <div class="bg-yellow-50 p-6 rounded-2xl border-l-4 border-yellow-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">😤</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift group">
+                    <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i data-lucide="user-x" class="w-6 h-6 text-teal-600"></i>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">No Follow-Up System</h3>
-                    <p class="text-gray-600 text-sm">Leads come in, you get busy, they slip through the cracks. No automated nurturing. No reminders. Just lost deals.</p>
-                </div>
-                
-                <!-- Document & Process -->
-                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">📄</div>
-                    <h3 class="font-bold text-lg mb-2">Manual Document Processing</h3>
-                    <p class="text-gray-600 text-sm">Reading, sorting, filing documents by hand. Extracting data from PDFs and forms. Hours of tedious paperwork.</p>
-                </div>
-                
-                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">📊</div>
-                    <h3 class="font-bold text-lg mb-2">Report Generation</h3>
-                    <p class="text-gray-600 text-sm">Compiling data from multiple sources, creating the same reports weekly/monthly. Manual charts, copy-paste, format, repeat.</p>
-                </div>
-                
-                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 hover:shadow-lg transition">
-                    <div class="text-3xl mb-4">🔍</div>
-                    <h3 class="font-bold text-lg mb-2">Information Hunting</h3>
-                    <p class="text-gray-600 text-sm">Searching through folders, emails, spreadsheets to find client info. "Where did I put that file?" Wasted minutes, every day.</p>
+                    <p class="text-gray-600 text-sm">Leads come in, you get busy, they slip away. No nurturing = lost deals.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- What We Help With -->
-    <section id="solutions" class="py-20 bg-gray-50">
+    <!-- Solutions - Bento Grid Style -->
+    <section id="solutions" class="py-24 bg-gray-50/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">What We Can Automate For You</h2>
+                <span class="inline-block text-brand-600 font-semibold text-sm tracking-wider uppercase mb-4">The Solutions</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">What We Can Automate For You</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    From lead capture to document processing—we build AI systems that handle the repetitive work so your team can focus on growth.
+                    From lead capture to document processing—we build AI systems that handle the repetitive work.
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">🤖</div>
-                    <h3 class="font-bold mb-2">AI Chatbots</h3>
-                    <p class="text-gray-600 text-sm">WhatsApp, website, Facebook—answer inquiries instantly, 24/7. Never miss a lead.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="gradient-border lg:col-span-2 lg:row-span-2">
+                    <div class="gradient-border-inner p-6 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-gradient-to-br from-brand-500 to-brand-600 rounded-2xl flex items-center justify-center mb-4">
+                                <i data-lucide="bot" class="w-7 h-7 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3">AI Chatbots</h3>
+                            <p class="text-gray-600">WhatsApp, website, Facebook—answer inquiries instantly, 24/7. Never miss a lead again.</p>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <span class="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs font-medium">WhatsApp</span>
+                            <span class="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs font-medium">Website</span>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">📞</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="phone-call" class="w-6 h-6 text-purple-600"></i>
+                    </div>
                     <h3 class="font-bold mb-2">AI Voice Agents</h3>
-                    <p class="text-gray-600 text-sm">Answer calls, qualify leads, book appointments. Natural conversations, zero wait time.</p>
+                    <p class="text-gray-600 text-sm">Answer calls, qualify leads, book appointments.</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">📅</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="calendar-check" class="w-6 h-6 text-green-600"></i>
+                    </div>
                     <h3 class="font-bold mb-2">Smart Scheduling</h3>
-                    <p class="text-gray-600 text-sm">Let customers book directly. Sync with your calendar. No more back-and-forth.</p>
+                    <p class="text-gray-600 text-sm">Let customers book directly. Sync with calendar.</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">📧</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="mail-check" class="w-6 h-6 text-blue-600"></i>
+                    </div>
                     <h3 class="font-bold mb-2">Email Automation</h3>
-                    <p class="text-gray-600 text-sm">Auto-replies, follow-ups, nurture sequences. Keep leads warm without lifting a finger.</p>
+                    <p class="text-gray-600 text-sm">Auto-replies, follow-ups, nurture sequences.</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">📄</div>
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="file-text" class="w-6 h-6 text-orange-600"></i>
+                    </div>
                     <h3 class="font-bold mb-2">Document AI</h3>
-                    <p class="text-gray-600 text-sm">Extract data from invoices, forms, contracts automatically. No more manual typing.</p>
+                    <p class="text-gray-600 text-sm">Extract data from invoices, forms, contracts.</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">🔄</div>
-                    <h3 class="font-bold mb-2">Workflow Automation</h3>
-                    <p class="text-gray-600 text-sm">Connect your apps. Auto-move data between systems. Eliminate copy-paste forever.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">📊</div>
-                    <h3 class="font-bold mb-2">Report Automation</h3>
-                    <p class="text-gray-600 text-sm">Generate reports automatically. Pull data, create charts, email stakeholders—on schedule.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="font-bold mb-2">Lead Qualification</h3>
-                    <p class="text-gray-600 text-sm">AI asks the right questions, scores leads, and routes hot prospects to your sales team.</p>
+                <div class="glass-card p-6 rounded-2xl hover-lift lg:col-span-2">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center shrink-0">
+                            <i data-lucide="workflow" class="w-6 h-6 text-pink-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2">Workflow Automation</h3>
+                            <p class="text-gray-600">Connect your apps. Auto-move data between systems. Eliminate copy-paste forever with smart integrations.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Breakdown -->
-    <section id="services" class="py-20">
+    <!-- Services Process -->
+    <section id="services" class="py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">How We Work</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    From audit to full implementation—we guide you every step of the way.
-                </p>
+                <span class="inline-block text-brand-600 font-semibold text-sm tracking-wider uppercase mb-4">Our Process</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">How We Work</h2>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-brand-500">
-                    <div class="w-14 h-14 bg-brand-100 rounded-xl flex items-center justify-center text-3xl mb-6">🔍</div>
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <!-- Connection Line -->
+                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-brand-200 via-brand-400 to-brand-200 -translate-y-1/2 z-0"></div>
+                
+                <div class="relative z-10 bg-white p-8 rounded-3xl shadow-xl border border-brand-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-500 to-brand-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-500/30">
+                        <i data-lucide="search" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="text-brand-600 font-bold text-sm mb-2">Step 1</div>
                     <h3 class="text-2xl font-bold mb-4">AI Readiness Audit</h3>
-                    <p class="text-gray-600 mb-4">We analyze your current workflows, identify automation opportunities, and create a custom roadmap.</p>
-                    <ul class="space-y-2 text-gray-600 text-sm">
-                        <li>✓ 1-hour consultation</li>
-                        <li>✓ Workflow analysis</li>
-                        <li>✓ Pain point mapping</li>
-                        <li>✓ 3 quick wins identified</li>
-                        <li>✓ Written report & roadmap</li>
+                    <p class="text-gray-600 mb-4">Deep-dive into your workflows. We identify exactly where AI can help.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 1-hour consultation</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Workflow analysis</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 3 quick wins</li>
                     </ul>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-accent-500">
-                    <div class="w-14 h-14 bg-accent-100 rounded-xl flex items-center justify-center text-3xl mb-6">⚡</div>
+                <div class="relative z-10 bg-white p-8 rounded-3xl shadow-xl border border-accent-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30">
+                        <i data-lucide="zap" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="text-orange-600 font-bold text-sm mb-2">Step 2</div>
                     <h3 class="text-2xl font-bold mb-4">Quick Wins Setup</h3>
-                    <p class="text-gray-600 mb-4">Implement the highest-impact automations first—see ROI within days, not months.</p>
-                    <ul class="space-y-2 text-gray-600 text-sm">
-                        <li>✓ Chatbot deployment</li>
-                        <li>✓ Auto-reply setup</li>
-                        <li>✓ Calendar integration</li>
-                        <li>✓ Basic workflow automation</li>
-                        <li>✓ Team training included</li>
+                    <p class="text-gray-600 mb-4">Implement highest-impact automations first—see ROI within days.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Chatbot deployment</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Auto-reply setup</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Team training</li>
                     </ul>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-green-500">
-                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-3xl mb-6">🚀</div>
+                <div class="relative z-10 bg-white p-8 rounded-3xl shadow-xl border border-green-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-green-500/30">
+                        <i data-lucide="rocket" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="text-green-600 font-bold text-sm mb-2">Step 3</div>
                     <h3 class="text-2xl font-bold mb-4">Full Implementation</h3>
-                    <p class="text-gray-600 mb-4">Build your complete AI automation stack. Advanced integrations, custom workflows, ongoing support.</p>
-                    <ul class="space-y-2 text-gray-600 text-sm">
-                        <li>✓ AI voice & chat agents</li>
-                        <li>✓ Document processing</li>
-                        <li>✓ Advanced workflows</li>
-                        <li>✓ CRM integration</li>
-                        <li>✓ Monthly optimization</li>
+                    <p class="text-gray-600 mb-4">Build your complete AI automation stack with ongoing support.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Voice & chat agents</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Advanced workflows</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Monthly optimization</li>
                     </ul>
                 </div>
             </div>
@@ -327,16 +468,24 @@
     </section>
 
     <!-- ROI Section -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold mb-8">The Cost of Doing Nothing</h2>
-            <div class="bg-gradient-to-r from-brand-600 to-brand-700 text-white p-10 rounded-3xl">
-                <p class="text-xl mb-4">If your team wastes just 10 hours/week on tasks AI could handle:</p>
-                <div class="text-6xl font-bold my-6">S$31,200</div>
-                <p class="text-xl">Annual cost of manual work (at S$60/hour)</p>
-                <div class="mt-8 pt-8 border-t border-white/20">
-                    <p class="text-lg">
-                        <strong>Our S$499 audit pays for itself 60x over</strong> by showing you exactly what to automate first.
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-dark-900 to-dark-800"></div>
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-500 rounded-full mix-blend-screen filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-8 text-white">The Cost of Doing Nothing</h2>
+            <div class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-10 md:p-16">
+                <p class="text-xl text-gray-300 mb-4">If your team wastes just 10 hours/week on tasks AI could handle:</p>
+                <div class="text-7xl md:text-8xl font-display font-bold my-8 text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-purple-400">
+                    S$31,200
+                </div>
+                <p class="text-2xl text-white font-medium">Annual cost of manual work (at S$60/hour)</p>
+                <div class="mt-10 pt-8 border-t border-white/20">
+                    <p class="text-lg text-gray-300">
+                        Our <span class="text-brand-400 font-bold">S$499 audit pays for itself 60x over</span> by showing you exactly what to automate first.
                     </p>
                 </div>
             </div>
@@ -344,142 +493,257 @@
     </section>
 
     <!-- Pricing -->
-    <section id="pricing" class="py-20">
+    <section id="pricing" class="py-24">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Start with an AI Readiness Audit</h2>
+                <span class="inline-block text-brand-600 font-semibold text-sm tracking-wider uppercase mb-4">Pricing</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Start with an AI Readiness Audit</h2>
                 <p class="text-xl text-gray-600">Know exactly where you stand before investing in full automation.</p>
             </div>
             
-            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border-2 border-brand-200">
-                <div class="text-center">
-                    <div class="inline-block bg-accent-100 text-accent-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
-                        ⭐ Best Way to Start
-                    </div>
-                    <h3 class="text-3xl font-bold mb-2">AI Readiness Audit</h3>
-                    <div class="flex items-baseline justify-center gap-2 my-6">
-                        <span class="text-6xl font-extrabold text-brand-600">S$499</span>
-                        <span class="text-gray-500 line-through text-2xl">S$1,500</span>
-                    </div>
-                    <p class="text-gray-600 mb-8 text-lg">Limited time: 67% off for early Singapore businesses</p>
-                    
-                    <div class="grid md:grid-cols-2 gap-4 text-left max-w-2xl mx-auto mb-8">
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-500 text-xl">✓</span>
-                            <span>1-hour deep-dive consultation</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-500 text-xl">✓</span>
-                            <span>Complete workflow analysis</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-500 text-xl">✓</span>
-                            <span>All pain points mapped</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-500 text-xl">✓</span>
-                            <span>3 quick wins identified</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-500 text-xl">✓</span>
-                            <span>Written report + roadmap</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-500 text-xl">✓</span>
-                            <span>No obligation to proceed</span>
-                        </div>
+            <div class="relative">
+                <!-- Glow Effect -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-purple-600 rounded-3xl blur opacity-30"></div>
+                
+                <div class="relative bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                        <span class="bg-gradient-to-r from-brand-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+                            ⭐ Best Way to Start
+                        </span>
                     </div>
                     
-                    <a href="#book" class="inline-block bg-brand-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-brand-700 transition shadow-lg hover:shadow-xl">
-                        Book My AI Audit
-                    </a>
-                    <p class="text-gray-500 mt-4">Only 7 spots left at S$499</p>
+                    <div class="text-center pt-4">
+                        <h3 class="text-3xl font-display font-bold mb-2">AI Readiness Audit</h3>
+                        <div class="flex items-baseline justify-center gap-3 my-6">
+                            <span class="text-7xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600">
+                                S$499
+                            </span>
+                            <span class="text-gray-400 line-through text-2xl">S$1,500</span>
+                        </div>
+                        <p class="text-gray-600 mb-8 text-lg">Limited time: 67% off for early Singapore businesses</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 text-left max-w-2xl mx-auto mb-10">
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                </div>
+                                <span>1-hour deep-dive consultation</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                </div>
+                                <span>Complete workflow analysis</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                </div>
+                                <span>All pain points mapped</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                </div>
+                                <span>3 quick wins identified</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                </div>
+                                <span>Written report + roadmap</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                </div>
+                                <span>No obligation to proceed</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#book" class="inline-block bg-gradient-to-r from-brand-600 to-purple-600 text-white px-12 py-4 rounded-full font-bold text-xl hover:shadow-2xl hover:shadow-brand-500/40 transition-all duration-300 hover:scale-105">
+                            Book My AI Audit
+                        </a>
+                        <p class="text-gray-500 mt-4 flex items-center justify-center gap-2">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                            Only 7 spots left at S$499
+                        </p>
+                    </div>
                 </div>
             </div>
             
             <div class="mt-12 text-center">
-                <p class="text-gray-600">After the audit, quick-win setup from S$1,500. Full implementation from S$5,000.</p>
+                <p class="text-gray-600">After the audit, quick-win setup from <strong>S$1,500</strong>. Full implementation from <strong>S$5,000</strong>.</p>
             </div>
         </div>
     </section>
 
-    <!-- Industries We Serve -->
-    <section class="py-20 bg-gray-50">
+    <!-- Industries -->
+    <section class="py-24 bg-gray-50/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">Industries We Serve</h2>
+                <span class="inline-block text-brand-600 font-semibold text-sm tracking-wider uppercase mb-4">Industries</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Who We Serve</h2>
                 <p class="text-xl text-gray-600">Every business has repetitive work. We help across industries.</p>
             </div>
             
-            <div class="flex flex-wrap justify-center gap-4">
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">🏢 Professional Services</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">🏠 Real Estate</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">🛠️ Home Services</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">🏥 Healthcare</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">📊 Accounting</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">⚖️ Legal</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">🎓 Education</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">🛒 Retail</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">🚚 Logistics</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">🏗️ Construction</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">🍽️ F&B</span>
-                <span class="bg-white px-6 py-3 rounded-full shadow font-medium text-gray-700">✈️ Travel</span>
+            <div class="flex flex-wrap justify-center gap-3">
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="building-2" class="w-4 h-4 text-brand-500"></i> Professional Services
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="home" class="w-4 h-4 text-brand-500"></i> Real Estate
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="wrench" class="w-4 h-4 text-brand-500"></i> Home Services
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="heart-pulse" class="w-4 h-4 text-brand-500"></i> Healthcare
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="calculator" class="w-4 h-4 text-brand-500"></i> Accounting
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="scale" class="w-4 h-4 text-brand-500"></i> Legal
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="graduation-cap" class="w-4 h-4 text-brand-500"></i> Education
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="shopping-bag" class="w-4 h-4 text-brand-500"></i> Retail
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="truck" class="w-4 h-4 text-brand-500"></i> Logistics
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="hard-hat" class="w-4 h-4 text-brand-500"></i> Construction
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="utensils" class="w-4 h-4 text-brand-500"></i> F&B
+                </span>
+                <span class="bg-white px-5 py-3 rounded-full shadow-sm font-medium text-gray-700 hover:shadow-md hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i data-lucide="plane" class="w-4 h-4 text-brand-500"></i> Travel
+                </span>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="py-20 bg-white">
+    <section class="py-24">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <div class="text-center mb-12">
+                <span class="inline-block text-brand-600 font-semibold text-sm tracking-wider uppercase mb-4">FAQ</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold">Common Questions</h2>
+            </div>
             
-            <div class="space-y-6">
-                <div class="border border-gray-200 rounded-xl p-6">
-                    <h3 class="font-bold text-lg mb-2">Do I need to be technical?</h3>
-                    <p class="text-gray-600">Not at all. We handle all the technical setup. You just tell us what you want automated, and we make it happen.</p>
+            <div class="space-y-4">
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50/50 transition" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <span class="font-bold text-lg">Do I need to be technical?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400"></i>
+                    </button>
+                    <div class="hidden px-6 pb-6">
+                        <p class="text-gray-600">Not at all. We handle all the technical setup. You just tell us what you want automated, and we make it happen. Our team trains yours on using the tools—we make them simple and intuitive.</p>
+                    </div>
                 </div>
-                <div class="border border-gray-200 rounded-xl p-6">
-                    <h3 class="font-bold text-lg mb-2">How fast can we see results?</h3>
-                    <p class="text-gray-600">Quick wins can be live within 24-48 hours. Most businesses see measurable time savings within the first week.</p>
+                
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50/50 transition" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <span class="font-bold text-lg">How fast can we see results?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400"></i>
+                    </button>
+                    <div class="hidden px-6 pb-6">
+                        <p class="text-gray-600">Quick wins can be live within 24-48 hours. Most businesses see measurable time savings within the first week. Full implementations typically show complete ROI within 30-60 days.</p>
+                    </div>
                 </div>
-                <div class="border border-gray-200 rounded-xl p-6">
-                    <h3 class="font-bold text-lg mb-2">What if we only want the audit?</h3>
-                    <p class="text-gray-600">No problem. The audit is standalone. You'll get a roadmap you can implement yourself or with another provider if you prefer.</p>
+                
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50/50 transition" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <span class="font-bold text-lg">What if we only want the audit?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400"></i>
+                    </button>
+                    <div class="hidden px-6 pb-6">
+                        <p class="text-gray-600">No problem. The audit is completely standalone. You'll get a detailed roadmap you can implement yourself, hand to your IT team, or use with another provider if you prefer. No pressure, no obligation.</p>
+                    </div>
                 </div>
-                <div class="border border-gray-200 rounded-xl p-6">
-                    <h3 class="font-bold text-lg mb-2">Is my data safe?</h3>
-                    <p class="text-gray-600">Yes. We use enterprise-grade security, don't store sensitive data unnecessarily, and comply with Singapore data protection laws (PDPA).</p>
+                
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50/50 transition" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <span class="font-bold text-lg">Is my data safe?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400"></i>
+                    </button>
+                    <div class="hidden px-6 pb-6">
+                        <p class="text-gray-600">Yes. We use enterprise-grade security, don't store sensitive data unnecessarily, and comply with Singapore's Personal Data Protection Act (PDPA). All data transfers are encrypted, and we can sign NDAs if required.</p>
+                    </div>
                 </div>
-                <div class="border border-gray-200 rounded-xl p-6">
-                    <h3 class="font-bold text-lg mb-2">What's included in the S$499 audit?</h3>
-                    <p class="text-gray-600">A 1-hour consultation where we analyze your workflows, identify automation opportunities, and provide a written report with 3 specific quick wins you can implement immediately.</p>
+                
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50/50 transition" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <span class="font-bold text-lg">What's included in the S$499 audit?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400"></i>
+                    </button>
+                    <div class="hidden px-6 pb-6">
+                        <p class="text-gray-600">A comprehensive 1-hour consultation where we analyze your current workflows, identify automation opportunities across your business, and provide a written report with 3 specific "quick wins" you can implement immediately for instant ROI.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section id="book" class="py-20 bg-gray-900 text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Stop Wasting Time on Manual Work</h2>
-            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+    <section id="book" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-brand-900"></div>
+        <div class="absolute inset-0 opacity-40">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-500 rounded-full mix-blend-screen filter blur-[100px]"></div>
+            <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-500 rounded-full mix-blend-screen filter blur-[100px]"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white">Stop Wasting Time on Manual Work</h2>
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
                 Every day you wait is another day of lost productivity. Let's find your quick wins.
             </p>
-            <a href="mailto:shane@amp-ai.co?subject=AI Readiness Audit Booking" class="inline-block bg-brand-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-brand-700 transition shadow-lg">
-                Email: shane@amp-ai.co
-            </a>
-            <p class="text-gray-400 mt-4">Or WhatsApp: +65 8819 9323</p>
-            <p class="text-gray-500 mt-6 text-sm">⚡ Only 7 audit spots left at S$499</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <a href="mailto:contact@amp-ai.co?subject=AI Readiness Audit Booking" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-500 to-brand-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-brand-500/40 transition-all duration-300 hover:scale-105">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    contact@amp-ai.co
+                </a>
+                <a href="https://wa.me/6588199323" class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    WhatsApp Us
+                </a>
+            </div>
+            
+            <p class="text-gray-400 flex items-center justify-center gap-2">
+                <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
+                Only 7 audit spots left at S$499
+            </p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-100 py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-600 mb-2">© 2026 Amp AI. AI automation for Singapore businesses.</p>
-            <p class="text-gray-500 text-sm">shane@amp-ai.co | amp-ai.co | Singapore</p>
+    <footer class="bg-dark-900 text-gray-400 py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-xl font-display font-bold text-white">Amp AI</span>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-white font-medium">contact@amp-ai.co</p>
+                    <p class="text-sm mt-1">© 2026 Amp AI. AI automation for Singapore businesses.</p>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 
 </body>
 </html>
