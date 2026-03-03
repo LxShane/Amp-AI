@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
-  <!-- Main A structure - clean and modern -->
-  <path d="M100 20L160 180H130L115 130H65L50 180H20L80 20H100Z" fill="#111827"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Slim, elegant A -->
+  <path d="M60 18L80 102H70L66 82H42L38 102H28L48 18H60Z" fill="#1f2937"/>
   
-  <!-- Horizontal bar -->
-  <rect x="72" y="100" width="56" height="12" rx="2" fill="#111827"/>
+  <!-- Thin crossbar -->
+  <rect x="44" y="58" width="28" height="4" rx="0.5" fill="#1f2937"/>
   
-  <!-- Dynamic diagonal accent -->
-  <path d="M102 20C102 20 70 80 35 130C30 137 40 142 45 135C82 92 115 40 115 40" stroke="#111827" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <!-- Graceful swoosh -->
+  <path d="M58 18C58 18 50 45 35 72C33 75 37 77 39 74C55 52 62 35 62 35" stroke="#1f2937" stroke-width="2" stroke-linecap="round" fill="none"/>
 </svg>
