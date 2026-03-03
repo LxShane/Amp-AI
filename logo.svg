@@ -1,13 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <!-- Background circle -->
-  <circle cx="50" cy="50" r="48" fill="#1a1a1a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Main A structure - clean and modern -->
+  <path d="M100 20L160 180H130L115 130H65L50 180H20L80 20H100Z" fill="#111827"/>
   
-  <!-- A letter - geometric, modern -->
-  <path d="M50 15L70 75H58L52 55H38L32 75H20L40 15H50Z" fill="#ffffff"/>
+  <!-- Horizontal bar -->
+  <rect x="72" y="100" width="56" height="12" rx="2" fill="#111827"/>
   
-  <!-- Horizontal crossbar accent -->
-  <rect x="35" y="45" width="30" height="4" fill="#1a1a1a"/>
-  
-  <!-- Subtle accent line - adds "speed/energy" -->
-  <path d="M52 25L62 55" stroke="#4a4a4a" stroke-width="2" stroke-linecap="round"/>
+  <!-- Dynamic diagonal accent -->
+  <path d="M102 20C102 20 70 80 35 130C30 137 40 142 45 135C82 92 115 40 115 40" stroke="#111827" stroke-width="8" stroke-linecap="round" fill="none"/>
 </svg>
